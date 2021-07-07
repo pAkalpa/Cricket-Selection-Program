@@ -1,49 +1,101 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PlayerSelection {
-	Scanner input = new Scanner(System.in);
-	private static boolean isValid = true;
+    private ArrayList<Player> mPlayers;
+    private Scanner mScanner = new Scanner(System.in);
 
-	public static void main(String[] args) {
+    public void PrintMenu() {
+        System.out.println("Commands:");
+        System.out.println("    A   -   Add player.");
+        System.out.println("    B   -   Display two best batmans.");
+        System.out.println("    C   -   Display two best bowlers.");
+        System.out.println("    D   -   Display the best keeper.");
+        System.out.println("    V   -   View all players.");
+        System.out.println();
+    }
 
-	}
+    public void AddPlayer() {
+        System.out.print("Enter player name: ");
+        String name = mScanner.nextLine();
 
-	private void DisplayMenu() {
-		while (isValid) {
-			String menu = "Player Selection Program".concat("Enter A to Add Player")
-					.concat("Enter V to View Alla Players")
-					.concat("Enter B to Display Best Batsmans")
-					.concat("Enter C to Display Best Bowlers")
-					.concat("Enter D to Display Best Keeper").concat("Choose Option: ");
-			boolean hasNext = input.hasNext();
-			if (hasNext) {
-			}
-		}
-		System.out.println("Exiting Program...");
-	}
+        System.out.print("Enter the number of years the players have played: ");
+        int years = Integer.parseInt(mScanner.nextLine());
 
-	private static void mainMenuInputValidation(String code) {
-		boolean validInput = false;
-		String[] validInputArray = { "A", "V", "B", "C", "D" };
-		int index = 0;
+        System.out.print("Enter the player's type (batting, bowling, keeping): ");
+        String type = mScanner.nextLine();
+        Player.Type pType;
 
-		for (int i = 0; i < validInputArray.length; i++) {
-			if (code.equals(validInputArray[i])) {
-				validInput = true;
-				index = i;
-			}
-		}
+        {
+            if (type.equalsIgnoreCase("batting"))
+                pType = Player.Type.BATTING;
+            else if (type.equalsIgnoreCase("bowling"))
+                pType = Player.Type.BOWLING;
+            else
+                pType = Player.Type.KEEPING;
+        }
 
-		if (validInput) {
-			switch (index) {
-				case value:
+        System.out.print("Enter player's statistics: ");
+        double stat = Double.parseDouble(mScanner.nextLine());
 
-					break;
+        System.out.print("Enter player rating: ");
+        int rating = Integer.parseInt(mScanner.nextLine());
 
-				default:
-					break;
-			}
-		}
+        mPlayers.add(new Player(name, pType, years, stat, rating));
+    }
 
-	}
+    public void ShowAllPlayers() {
+        for (Player iterator : mPlayers) {
+            System.out.println(iterator);
+        }
+    }
+
+    public void BestBatsmans() {
+        Player[] players = { new Player(), new Player() };
+
+        int counter = 1;
+        for (Player player : mPlayers) {
+            if (player.getType() == Player.Type.BATTING) {
+                if (counter < 0)
+                    return;
+
+                players[counter] = player;
+                counter--;
+            }
+        }
+    }
+
+
+    public void BestBowlers() {
+        Player[] players = { new Player(), new Player() };
+
+        int counter = 1;
+        for (Player player : mPlayers) {
+            if (player.getType() == Player.Type.BOWLING) {
+                if (counter < 0)
+                    return;
+
+                players[counter] = player;
+                counter--;
+            }
+        }
+    }
+
+    /**
+     * Iterate and find the best keeper.
+     */
+    public void BestKeeper() {
+        Player[] players = { new Player(), new Player() };
+
+        int counter = 1;
+        for (Player player : mPlayers) {
+            if (player.getType() == Player.Type.KEEPING) {
+                if (counter < 0)
+                    return;
+
+                players[counter] = player;
+                counter--;
+            }
+        }
+    }
 }
