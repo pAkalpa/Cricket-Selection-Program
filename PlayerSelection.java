@@ -12,9 +12,9 @@ public class PlayerSelection {
 		while (isValid) {
 			String menu = "Player Selection Program".concat("Enter A to Add Player")
 					.concat("Enter V to View Alla Players")
-					.concat("Enter T to Display Best Batsmans")
-					.concat("Enter W to Display Best Bowlers")
-					.concat("Enter K to Display Best Keeper").concat("Choose Option: ");
+					.concat("Enter B to Display Best Batsmans")
+					.concat("Enter C to Display Best Bowlers")
+					.concat("Enter D to Display Best Keeper").concat("Choose Option: ");
 			boolean hasNext = input.hasNext();
 			if (hasNext) {
 			}
@@ -23,6 +23,27 @@ public class PlayerSelection {
 	}
 
 	private static void mainMenuInputValidation(String code) {
-		String[] validInputArray = {}
+		boolean validInput = false;
+		String[] validInputArray = { "A", "V", "B", "C", "D" };
+		int index = 0;
+
+		for (int i = 0; i < validInputArray.length; i++) {
+			if (code.equals(validInputArray[i])) {
+				validInput = true;
+				index = i;
+			}
+		}
+
+		if (validInput) {
+			switch (index) {
+				case value:
+
+					break;
+
+				default:
+					break;
+			}
+		}
+
 	}
 }
